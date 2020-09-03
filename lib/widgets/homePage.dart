@@ -19,9 +19,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Color changeBackgroundColor() {
-    this.backgroundColor = Color.fromARGB(random.nextInt(255),
-        random.nextInt(255), random.nextInt(255), random.nextInt(255));
-
+    setState(() {
+      this.backgroundColor = Color.fromARGB(random.nextInt(255),
+          random.nextInt(255), random.nextInt(255), random.nextInt(255));
+    });
     return this.backgroundColor;
   }
 
@@ -31,11 +32,10 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
             child: InkWell(
                 onTap: () {
-                  setState(() {
-                    this.changeBackgroundColor();
-                  });
+                  this.changeBackgroundColor();
                 },
                 child: Container(
+                  key: Key('container'),
                   color: this.backgroundColor,
                   child: Center(
                     child: Text(
